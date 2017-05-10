@@ -1,0 +1,27 @@
+<!document html>
+<html>
+<head>
+	<title>Meadowlark</title>
+	{{#if showTests}}
+		<link rel="stylesheet" href="/vendor/mocha.css">
+	{{/if}}
+	<script type="text/javascript" src="/js/zepto.min.js"></script>
+</head>
+<body>
+	{{{ body }}}
+	{{#if showTests}}
+		<div id="mocha"></div>
+		<script type="text/javascript" src="/vendor/mocha.js"></script>
+		<script type="text/javascript" src="/vendor/chai.js"></script>
+		<script type="text/javascript">
+			//测试驱动开发(TDD)
+			mocha.ui('tdd'); 
+			var assert = chai.assert;
+		</script>
+		{{#if pageTestScript}}
+			<script type="text/javascript" src={{pageTestScript}}></script>
+		{{/if}}
+		<script type="text/javascript">mocha.run();</script>
+	{{/if}}
+</body>
+</html>

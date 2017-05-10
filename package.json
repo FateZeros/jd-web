@@ -4,6 +4,7 @@
   "description": "node express",
   "main": "index.js",
   "scripts": {
+    "mocha": "./node_modules/.bin/mocha -u tdd -R spec qa/tests-crosspage.js 2>/dev/null",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -21,6 +22,12 @@
   },
   "homepage": "https://github.com/FateZeros/meadowlark#readme",
   "dependencies": {
-    "express": "^4.15.2"
+    "express": "^4.15.2",
+    "express-handlebars": "^3.0.0"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.3.0",
+    "zombie": "^5.0.5"
   }
 }
