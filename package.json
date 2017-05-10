@@ -1,0 +1,26 @@
+{
+  "name": "meadowlark",
+  "version": "1.0.0",
+  "description": "node express",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FateZeros/meadowlark.git"
+  },
+  "keywords": [
+    "node",
+    "express"
+  ],
+  "author": "YJF",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/FateZeros/meadowlark/issues"
+  },
+  "homepage": "https://github.com/FateZeros/meadowlark#readme",
+  "dependencies": {
+    "express": "^4.15.2"
+  }
+}
