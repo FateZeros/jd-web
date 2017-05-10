@@ -1,3 +1,5 @@
+// 跨页测试 document.referrer
+
 var Browser = require('zombie'),
 		assert = require('chai').assert;
 
@@ -13,10 +15,12 @@ suite('Cross-Page Tests', function() {
 			var referrer = 'http://localhost:1212/tours/hood-river';
 			browser.visit(referrer, function() {
 				browser.clickLink('.requestGroupRate', function() {
+					// console.log(browser.location.href)
 					// browser.field('referrer').value ==> '' ??
 					assert(browser.field('referrer').value === referrer);
-					done();
+					// browser.assert.input('form input[name=referrer]', referrer);	
 				});
+				done(); //done 在clickLink操作之外。
 			});
 	});
 
@@ -26,16 +30,16 @@ suite('Cross-Page Tests', function() {
 			browser.visit(referrer, function() {
 				browser.clickLink('.requestGroupRate', function() {
 					assert(browser.field('referrer').value === referrer);
-					done()
 				});
+				done();
 			});
 	});
 
 	test('visting the "request group rate" page directly should result ' + 
-		'in an empty referrer field', function() {
+		'in an empty referrer field', function(done) {
 			browser.visit('http://localhost:1212/tours/request-group-rate', function() {
 				assert(browser.field('referrer').value === '');
-				done();
 			});
+			done();
 	});
 })
