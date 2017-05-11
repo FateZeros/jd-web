@@ -1,8 +1,17 @@
 var express = require('express');
 var exphbs = require('express-handlebars');
 var path = require('path');
+// 表单处理 中间件body-parser
+var bodyParser = require('body-parser');
+// Cookie
+var cookieParser = require('cookie-parser');
+var credentials = require('./credentials.js');
+// Session
+var session = require('express-session');
 
 var fortune = require('./lib/fortune.js');
+var weather = require('./lib/weather.js');
+console.log(weather.getWeatherData());
 
 var app = express();
 
@@ -10,7 +19,11 @@ var app = express();
 app.set('port', process.env.PORT || 1212);
 
 //加载静态资源
-app.use(express.static(path.join(__dirname, 'public'))); 
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(bodyParser());
+
+app.use(cookieParser(credentials.cookieSecret));
+app.use(session());
 
 app.engine('.hbs', exphbs({ defaultLayout: 'main', extname: '.hbs' }));
 app.set('view engine', '.hbs');
@@ -42,6 +55,11 @@ app.get('/tours/request-group-rate', function(req, res) {
 })
 /*** 页面路由 END ***/
 
+app.use(function(req, res, next) {
+	if(!res.locals.partials) res.locals.partials = {};
+	res.locals.partials.weather = weather.getWeatherData();
+	next();
+})
 
 //定制404页面
 app.use(function(req, res) {

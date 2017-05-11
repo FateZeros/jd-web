@@ -8,6 +8,8 @@ npm install --save express
 
 npm install --save express-handlebars
 
+npm install --save body-parser
+
 ```
 
 ## 监控工具
@@ -25,6 +27,15 @@ npm install --save-dev mocha
 
 cp node_modules/mocha/mocha.js public/vendor
 cp node_modules/mocha/mocha.css public/vendor
+
+```
+
+## Cookie Session
+```bash
+
+npm install --save cookie-parser
+
+npm install --save express-session
 
 ```
 
@@ -53,8 +64,9 @@ linkchecker http://localhost:1212
 ```
 
 ## 链接
-[Express-handle](https://github.com/ericf/express-handlebars)
-[nodemon](https://npmjs.org/package/nodemon)
-[Zombie](http://zombie.js.org/)
-[LinkChecker](https://github.com/wummel/linkchecker)
-[ExpressApi](http://expressjs.com/en/api.html)
+[Express-handle](https://github.com/ericf/express-handlebars) </br>
+[nodemon](https://npmjs.org/package/nodemon) </br>
+[Zombie](http://zombie.js.org/)</br>
+[LinkChecker](https://github.com/wummel/linkchecker)</br>
+[ExpressApi](http://expressjs.com/en/api.html)</br>
+[Bootstrap](http://getbootstrap.com)

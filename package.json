@@ -2,8 +2,9 @@
   "name": "meadowlark",
   "version": "1.0.0",
   "description": "node express",
-  "main": "index.js",
+  "main": "meadowlark.js",
   "scripts": {
+    "start": "node meadowlark.js",
     "cross": "./node_modules/.bin/mocha -u tdd -R spec qa/tests-crosspage.js 2>/dev/null",
     "logic": "./node_modules/.bin/mocha -u tdd -R spec qa/tests-unit.js",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -23,8 +24,11 @@
   },
   "homepage": "https://github.com/FateZeros/meadowlark#readme",
   "dependencies": {
+    "body-parser": "^1.17.1",
+    "cookie-parser": "^1.4.3",
     "express": "^4.15.2",
-    "express-handlebars": "^3.0.0"
+    "express-handlebars": "^3.0.0",
+    "express-session": "^1.15.2"
   },
   "devDependencies": {
     "chai": "^3.5.0",
