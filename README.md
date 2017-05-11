@@ -64,7 +64,7 @@ linkchecker http://localhost:1212
 ```
 
 ## 链接
-[Express-handle](https://github.com/ericf/express-handlebars) </br>
+[Express-handlebars](https://github.com/ericf/express-handlebars) </br>
 [nodemon](https://npmjs.org/package/nodemon) </br>
 [Zombie](http://zombie.js.org/)</br>
 [LinkChecker](https://github.com/wummel/linkchecker)</br>
