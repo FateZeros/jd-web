@@ -39,6 +39,10 @@ npm install --save express-session
 
 ```
 
+## 邮件
+```bash
+```
+
 ## 断言函数
 ```bash
 
@@ -70,3 +74,4 @@ linkchecker http://localhost:1212
 [LinkChecker](https://github.com/wummel/linkchecker)</br>
 [ExpressApi](http://expressjs.com/en/api.html)</br>
 [Bootstrap](http://getbootstrap.com)
+[nodemailer](https://npmjs.org/package/nodemailer)
