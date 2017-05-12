@@ -48,6 +48,17 @@ npm install --save nodemailer-smtp-transport
 
 ```
 
+## 日志
+```bash
+npm install --save morgan
+
+生产环境下
+npm install --save express-logger
+```
+请求日志 生产环境下
+NODE_ENV=production node meadowlark.js
+
+
 ## 断言函数
 ```bash
 
@@ -78,5 +89,6 @@ linkchecker http://localhost:1212
 [Zombie](http://zombie.js.org/)</br>
 [LinkChecker](https://github.com/wummel/linkchecker)</br>
 [ExpressApi](http://expressjs.com/en/api.html)</br>
-[Bootstrap](http://getbootstrap.com)
-[Nodemailer](https://npmjs.org/package/nodemailer)
+[Bootstrap](http://getbootstrap.com)</br>
+[Nodemailer](https://npmjs.org/package/nodemailer)</br>
+[Node异常处理：域](http://nodejs.org/api/ domain.html)

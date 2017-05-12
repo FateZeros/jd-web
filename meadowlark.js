@@ -11,11 +11,15 @@ var session = require('express-session');
 // Email
 var emailService = require('./lib/email.js')(credentials);
 
-emailService.send('1031720197@qq.com', 'Hello Email', 'Hello');
+// emailService.send('1031720197@qq.com', 'Hello Email', 'Hello');
+
+// 日志
+var morgan = require('morgan');
+var expLogger = require('express-logger');
 
 var fortune = require('./lib/fortune.js');
 var weather = require('./lib/weather.js');
-console.log(weather.getWeatherData());
+// console.log(weather.getWeatherData());
 
 var app = express();
 
@@ -25,6 +29,17 @@ app.set('port', process.env.PORT || 1212);
 //加载静态资源
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser());
+
+switch(app.get('env')) {
+	case 'development':
+		app.use(morgan('dev'));
+		break;
+	case 'production':
+		app.use(expLogger({
+			path: __dirname + '/log/requests.log'
+		}));
+		break;
+}
 
 app.use(cookieParser(credentials.cookieSecret));
 app.use(session());
@@ -79,5 +94,6 @@ app.use(function(err, req, res, next) {
 })
 
 app.listen(app.get('port'), function() {
-	console.log('Express start on http://localhost:' + app.get('port') + '...');
+	console.log('Express start in ' + app.get('env') +
+		' mode on http://localhost:' + app.get('port') + '...');
 })
