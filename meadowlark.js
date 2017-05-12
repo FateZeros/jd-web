@@ -8,6 +8,10 @@ var cookieParser = require('cookie-parser');
 var credentials = require('./credentials.js');
 // Session
 var session = require('express-session');
+// Email
+var emailService = require('./lib/email.js')(credentials);
+
+emailService.send('1031720197@qq.com', 'Hello Email', 'Hello');
 
 var fortune = require('./lib/fortune.js');
 var weather = require('./lib/weather.js');

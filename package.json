@@ -28,7 +28,9 @@
     "cookie-parser": "^1.4.3",
     "express": "^4.15.2",
     "express-handlebars": "^3.0.0",
-    "express-session": "^1.15.2"
+    "express-session": "^1.15.2",
+    "nodemailer": "^4.0.1",
+    "nodemailer-smtp-transport": "^2.7.4"
   },
   "devDependencies": {
     "chai": "^3.5.0",
