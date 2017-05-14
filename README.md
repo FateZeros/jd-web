@@ -12,6 +12,8 @@ npm install --save body-parser
 
 ```
 
+## bootStrap
+
 ## 监控工具
 发现JavaScript被修改后会自动重启服务器。
 ```bash
@@ -91,4 +93,4 @@ linkchecker http://localhost:1212
 [ExpressApi](http://expressjs.com/en/api.html)</br>
 [Bootstrap](http://getbootstrap.com)</br>
 [Nodemailer](https://npmjs.org/package/nodemailer)</br>
-[Node异常处理：域](http://nodejs.org/api/ domain.html)
+[Node异常处理：域](http://nodejs.org/api/domain.html)

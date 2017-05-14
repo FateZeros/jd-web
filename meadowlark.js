@@ -44,12 +44,42 @@ switch(app.get('env')) {
 app.use(cookieParser(credentials.cookieSecret));
 app.use(session());
 
-app.engine('.hbs', exphbs({ defaultLayout: 'main', extname: '.hbs' }));
+// app.engine('.hbs', exphbs({ 
+// 	defaultLayout: 'main', 
+// 	extname: '.hbs',
+// 	helpers: {
+// 		section: function(name, options) {
+// 			console.log(name, options)
+// 			if (!this._sections) this._section = {};
+// 			this._sections[name] = options.fn(this);
+// 			return null
+// 		}
+// 	}}));
+// app.set('view engine', '.hbs');
+// set up handlebars view engine
+var handlebars = exphbs.create({
+    defaultLayout:'main',
+    extname: '.hbs',
+    helpers: {
+        section: function(name, options){
+            if(!this._sections) this._sections = {};
+            this._sections[name] = options.fn(this);
+            return null;
+        }
+    }
+});
+app.engine('.hbs', handlebars.engine);
 app.set('view engine', '.hbs');
 
 app.use(function(req, res, next) {
 	res.locals.showTests = app.get('env') !== 'production' &&
 		req.query.test === '1'; // 测试页面
+	next();
+})
+
+app.use(function(req, res, next) {
+	if(!res.locals.partials) res.locals.partials = {};
+	res.locals.partials.weatherContext = weather.getWeatherData();
 	next();
 })
 
@@ -65,20 +95,19 @@ app.get('/about', function(req, res) {
 	});
 })
 
+app.get('/jq-test', function(req, res) {
+	res.render('jq-test');
+});
+
 app.get('/tours/hood-river', function(req, res) {
 	res.render('tours/hood-river');
-})
+});
 
 app.get('/tours/request-group-rate', function(req, res) {
 	res.render('tours/request-group-rate');
-})
-/*** 页面路由 END ***/
+});
 
-app.use(function(req, res, next) {
-	if(!res.locals.partials) res.locals.partials = {};
-	res.locals.partials.weather = weather.getWeatherData();
-	next();
-})
+/*** 页面路由 END ***/
 
 //定制404页面
 app.use(function(req, res) {

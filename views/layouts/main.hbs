@@ -2,10 +2,11 @@
 <html>
 <head>
 	<title>Meadowlark</title>
+	{{{_sections.head}}}
+	<link rel="stylesheet" href="/bootstrap/bootstrap.min.css">
 	{{#if showTests}}
 		<link rel="stylesheet" href="/vendor/mocha.css">
 	{{/if}}
-	<script type="text/javascript" src="/js/zepto.min.js"></script>
 </head>
 <body>
 	{{{ body }}}
@@ -23,5 +24,8 @@
 		{{/if}}
 		<script type="text/javascript">mocha.run();</script>
 	{{/if}}
+	<script type="text/javascript" src="/js/jquery.min.js"></script>
+	{{{_sections.jquery}}}
+	<script type="text/javascript" src="/bootstrap/bootstrap.min.js"></script>
 </body>
 </html>
