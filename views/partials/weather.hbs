@@ -1,12 +1,15 @@
-<div>
+{{#section 'weather'}}
+<link rel="stylesheet" href="/css/weather.css">
+{{/section}}
+
+<div class="weather">
 	{{#each partials.weatherContext.locations}}
-		<div>
-			<h3>{{name}}</h3>
-			<a href="{{forecastUrl}}">
-				{{weather}}, {{temp}}
-			</a>
-		</div>
+	<div class="weather-img">
+		<img src="" alt="天气" class="weather-i">
+	</div>
+	<div class="weather-info">
+		<p class="weather-f">{{weather}}</p>
+		<p class="weather-t">{{temp}}</p>
+	</div>
 	{{/each}}
-	<div>{{locations}}</div>
-	<small>来源: <a href="http://www.weather.com.cn/weather/101280601.shtml">中国天气</a></small>
 </div>

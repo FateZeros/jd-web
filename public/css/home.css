@@ -1,0 +1,48 @@
+
+.nav-bar {
+	width: 100%;
+	height: 50px;
+	background: #dfe0e1;
+}
+
+.weather-cont {
+	width: 150px;
+  height: 50px;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.location {
+	float: left;
+	margin:15px 0 15px 300px;
+}
+
+.nav-cont {
+	margin: 15px 0;
+	height: 20px;
+	line-height: 20px;
+}
+
+.nav-item {
+	border-right: 1px solid #ccc;
+	padding:0 16px;
+	color: #999;
+}
+
+.nav-item:last-child {
+	border-right: none;
+}
+
+.nav-item: hover {
+	color: #f10215;
+}
+
+.login {
+	color: #999;
+}
+
+.regist {
+	color: #f10215;
+}
+

@@ -13,12 +13,20 @@ npm install --save body-parser
 ```
 
 ## bootStrap
+## 上传
+```bash
+
+npm install --save formidable
+
+npm install --save jquery-file-upload-middleware
+
+```
 
 ## 监控工具
 发现JavaScript被修改后会自动重启服务器。
 ```bash
 
-npm install --save nodemon
+npm install --save-dev nodemon
 
 ```
 

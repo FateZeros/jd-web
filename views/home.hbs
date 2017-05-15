@@ -1,2 +1,45 @@
-<h1>Welcome to Meadowlark</h1>
-{{> weather}}
+{{#section 'home'}}
+<link rel="stylesheet" href="/css/home.css">
+{{/section}}
+
+<div class="nav-bar">
+	<div class="weather-cont">
+		{{> weather}}
+	</div>
+	<div class="f_width">
+		<div class="location">
+			北京
+		</div>
+		<div class="fr nav-cont">
+			<ul>
+				<li class="nav-item">
+					<a class="login">你好，请登录</a>&nbsp;
+					<a class="regist">免费注册</a>
+				</li>
+				<li class="nav-item">
+					我的订单
+				</li>
+				<li class="nav-item">
+					我的京东
+				</li>
+				<li class="nav-item">
+					京东会员
+				</li>
+				<li class="nav-item">
+					企业采购
+				</li>
+				<li class="nav-item">
+					客户服务
+				</li>
+				<li class="nav-item">
+					网站导航
+				</li>
+				<li class="nav-item">
+					手机京东
+				</li>
+			</ul>
+			
+
+		</div>
+	</div>
+</div>

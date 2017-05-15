@@ -1,0 +1,25 @@
+.f_width {
+	width: 1190px;
+	margin: auto;
+}
+
+.fl {
+	float: left;
+}
+
+.fr {
+	float: right;
+}
+
+a {
+	text-decoration: none;
+}
+
+ul {
+	list-style: none;
+	display: flex;
+}
+
+p {
+	margin: 0;
+}

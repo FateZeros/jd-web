@@ -1,0 +1,29 @@
+.weather {
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
+
+.weather-img {
+	width: 60%;
+	height: 100%;
+	float: left;
+	text-align: center;
+}
+
+.weather-i {
+	width: 100%;
+	height: 50px;
+	border: none;
+}
+
+.weather-info {
+	width: 40%;
+	height: 100%;
+	float: left;
+	text-align: center;
+}
+
+.weather-f {
+	font-size: 20px;
+}
