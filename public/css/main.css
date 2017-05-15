@@ -1,6 +1,7 @@
 .f_width {
 	width: 1190px;
 	margin: auto;
+	position: relative;
 }
 
 .fl {
