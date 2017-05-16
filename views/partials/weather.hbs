@@ -3,13 +3,11 @@
 {{/section}}
 
 <div class="weather">
-	{{#each partials.weatherContext.locations}}
 	<div class="weather-img">
-		<img src="" alt="天气" class="weather-i">
+		<img src="/imgs/weatherImg/{{partials.weatherContext.now.code}}.png" alt="天气" class="weather-i">
 	</div>
 	<div class="weather-info">
-		<p class="weather-f">{{weather}}</p>
-		<p class="weather-t">{{temp}}</p>
+		<p class="weather-f">{{partials.weatherContext.now.text}}</p>
+		<p class="weather-t">{{partials.weatherContext.now.temperature}}℃</p>
 	</div>
-	{{/each}}
 </div>

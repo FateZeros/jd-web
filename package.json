@@ -39,8 +39,12 @@
   },
   "devDependencies": {
     "chai": "^3.5.0",
+    "crypto": "0.0.3",
     "mocha": "^3.3.0",
     "nodemon": "^1.11.0",
+    "optimist": "^0.6.1",
+    "querystring": "^0.2.0",
+    "request-promise": "^4.2.1",
     "zombie": "^5.0.5"
   }
 }

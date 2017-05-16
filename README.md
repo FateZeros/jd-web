@@ -30,6 +30,14 @@ npm install --save-dev nodemon
 
 ```
 
+## 天气
+```bash
+npm install --save-dev crypto
+npm install --save-dev querystring
+npm install --save-dev request-promise
+npm install --save-dev optimist
+```
+
 ## 测试框架 
 ```bash
 

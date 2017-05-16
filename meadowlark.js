@@ -22,7 +22,7 @@ var formidable = require('formidable');
 var jqupload = require('jquery-file-upload-middleware');
 
 var fortune = require('./lib/fortune.js');
-var weather = require('./lib/weather.js');
+var Weather = require('./lib/weather.js');
 // console.log(weather.getWeatherData());
 
 var app = express();
@@ -83,7 +83,20 @@ app.use(function(req, res, next) {
 
 app.use(function(req, res, next) {
 	if(!res.locals.partials) res.locals.partials = {};
-	res.locals.partials.weatherContext = weather.getWeatherData();
+	var uid = credentials.weatherApi.uid;
+	var key = credentials.weatherApi.secretKey;
+	var location = 'shenzhen';
+	var argv = require('optimist').default('l', location).argv
+	var weatherApi = new Weather(uid, key);
+	weatherApi.getWeatherNow(argv.l).then(function(data) {
+	  // console.log(JSON.stringify(data, null, 4));
+	  var weatherNow = data.results[0];
+	  // console.log(weatherNow);
+	  // res.locals.partials.weatherContext = weatherApi.getWeatherNow();
+	  res.locals.partials.weatherContext = weatherNow;
+	}).catch(function(err) {
+	  console.log(err.error.status);
+	});
 	next();
 });
 
