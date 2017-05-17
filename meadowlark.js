@@ -49,19 +49,6 @@ switch(app.get('env')) {
 app.use(cookieParser(credentials.cookieSecret));
 app.use(session());
 
-// app.engine('.hbs', exphbs({ 
-// 	defaultLayout: 'main', 
-// 	extname: '.hbs',
-// 	helpers: {
-// 		section: function(name, options) {
-// 			console.log(name, options)
-// 			if (!this._sections) this._section = {};
-// 			this._sections[name] = options.fn(this);
-// 			return null
-// 		}
-// 	}}));
-// app.set('view engine', '.hbs');
-// set up handlebars view engine
 var handlebars = exphbs.create({
   defaultLayout:'main',
   extname: '.hbs',
@@ -74,6 +61,7 @@ var handlebars = exphbs.create({
   }
 });
 app.engine('.hbs', handlebars.engine);
+// set up handlebars view engine
 app.set('view engine', '.hbs');
 
 app.use(function(req, res, next) {
@@ -101,23 +89,6 @@ app.use(function(req, res, next) {
 	next();
 });
 
-require('./routes')(app);
-var autoViews = {}
-app.use(function(req, res, next){
-  var path = req.path.toLowerCase();  
-  // check cache; if it's there, render the view
-  if(autoViews[path]) return res.render(autoViews[path]);
-  // if it's not in the cache, see if there's
-  // a .handlebars file that matches
-  console.log(autoViews, path)
-  if(fs.existsSync(__dirname + '/views' + path + '.hbs')){
-      autoViews[path] = path.replace(/^\//, '');
-      return res.render(autoViews[path]);
-  }
-  // no view found; pass on to 404 handler
-  next();
-});
-
 // jQuery File Upload endpoint middleware
 app.use('/upload', function(req, res, next){
   var now = Date.now();
@@ -130,6 +101,23 @@ app.use('/upload', function(req, res, next){
     }
   })(req, res, next);
 });
+
+require('./routes')(app);
+// 自动化渲染视图
+// var autoViews = {}
+// app.use(function(req, res, next){
+//   var path = req.path.toLowerCase();  
+//   // check cache; if it's there, render the view
+//   if(autoViews[path]) return res.render(autoViews[path]);
+//   // if it's not in the cache, see if there's
+//   // a .handlebars file that matches
+//   if(fs.existsSync(__dirname + '/views' + path + '.hbs')){
+//       autoViews[path] = path.replace(/^\//, '');
+//       return res.render(autoViews[path]);
+//   }
+//   // no view found; pass on to 404 handler
+//   next();
+// });
 
 //定制404页面
 app.use(function(req, res) {
@@ -147,4 +135,4 @@ app.use(function(err, req, res, next) {
 app.listen(app.get('port'), function() {
 	console.log('Express start in ' + app.get('env') +
 		' mode on http://localhost:' + app.get('port') + '...');
-})
+});

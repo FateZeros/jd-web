@@ -1,20 +1,14 @@
-// 上传
-var jqupload = require('jquery-file-upload-middleware');
-
-var fortune = require('../lib/fortune.js');
+var main = require('../handlers/main');
 
 module.exports = function(app) {
 	/*** 页面路由 Start ***/
-	app.get('/', function(req, res) {
-		res.render('home');
-	});
+	app.get('/', main.home);
 
-	app.get('/about', function(req, res) {
-		res.render('about', { 
-			fortune: fortune.getFortune(),
-			pageTestScript: '/qa/tests-about.js' 
-		});
-	})
+	app.get('/about', main.about);
+
+	/** 注册 模块 **/
+	app.get('/register', main.register);
+
 
 	app.get('/jq-test', function(req, res) {
 		res.render('jq-test');
