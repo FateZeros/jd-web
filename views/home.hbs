@@ -2,6 +2,10 @@
 <link rel="stylesheet" href="/css/home.css">
 {{/section}}
 
+{{#section 'swiperCss'}}
+<link rel="stylesheet" href="/vendor/swiper/swiper.min.css">
+{{/section}}
+
 <div class="nav-bar">
 	<div class="weather-cont">
 		{{> weather}}
@@ -92,9 +96,58 @@
 	<div class="f-width">
 		<div class="category-cont"></div>
 		<div class="category-imgs">
-			
+			<div class="swiper-container category-swipe">
+				<div class="swiper-wrapper">
+          <div class="swiper-slide">
+          	<img src="/imgs/swipe01.jpg" alt="" class="swiper-img"/>
+          </div>
+          <div class="swiper-slide">
+          	<img src="/imgs/swipe02.jpg" alt="" class="swiper-img"/>
+          </div>
+          <div class="swiper-slide">
+          	<img src="/imgs/swipe03.jpg" alt="" class="swiper-img"/>
+          </div>
+          <div class="swiper-slide">
+          	<img src="/imgs/swipe04.jpg" alt="" class="swiper-img"/>
+          </div>
+          <div class="swiper-slide">
+          	<img src="/imgs/swipe05.jpg" alt="" class="swiper-img"/>
+          </div>
+        </div>
+        <!-- Add Pagination -->
+        <div class="swiper-pagination"></div>
+        <!-- Add Arrows -->
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+			</div>
+			<div class="category-static">
+				<div class="fl">
+					<img src="/imgs/static01.jpg!q90" alt="" class="category-static-item" />
+				</div>
+				<div class="fr">
+					<img src="/imgs/static02.jpg!q90" alt="" class="category-static-item" />
+				</div>
+			</div>
 		</div>
 		<div class="category-infos">
 		</div>
 	</div>
 </div>
+
+{{#section 'swiperJs'}}
+<script type="text/javascript" src="/vendor/swiper/swiper.min.js"></script>
+{{/section}}
+{{#section 'jquery'}}
+<script type="text/javascript">
+	var swiper = new Swiper('.category-swipe', {
+    pagination: '.swiper-pagination',
+    paginationClickable: true,
+    nextButton: '.swiper-button-next',
+    prevButton: '.swiper-button-prev',
+    slidesPerView: 1,
+    spaceBetween: 30,
+    loop: true,
+    autoplay: 3000
+  });
+</script>
+{{/section}}
