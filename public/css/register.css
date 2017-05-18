@@ -41,10 +41,28 @@
 .container {
 	width: 100%;
 	background: #fff;
+  padding: 80px;
+  border-bottom: 1px solid #eee;
 }
 
 .form-cont {
-	width: 1190px;
-	height: 100%;
-	margin: 0 auto;
+	width: 60%;
+  border-right: 1px solid #eee;
+}
+
+.form-label {
+  line-height: 50px;
+  padding-top: 0 !important;
+}
+
+.form-input {
+  height: 50px;
+}
+
+.form-group-bottom {
+  margin-bottom: 30px !important;
+}
+
+.form-company {
+  width: 40%;
 }
