@@ -66,3 +66,38 @@
 .form-company {
   width: 40%;
 }
+
+.company-cont {
+  padding: 15px;
+  border-bottom: 1px solid #eee;
+}
+
+.globle-cont {
+  padding: 15px;
+  display: flex;
+}
+
+.company-register-icon {
+  font-size: 24px;
+  margin-right: 12px;
+  color: #9fcc3b; 
+}
+
+.globe-icon {
+  font-size: 24px;
+  margin-right: 12px;
+  color: #4090ff;
+}
+
+.register-footer {
+  font-size: 12px;
+  color: #999;
+  text-align: center;
+  background-color: #fff;
+  padding: 50px 0;
+}
+
+.copy-right {
+  margin-top: 20px;
+}
+
