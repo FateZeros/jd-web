@@ -11,35 +11,36 @@
 </div>
 <div class="container">
 	<div class="form-cont fl">
-		<form class="form-horizontal">
+		<form class="form-horizontal registerForm" role="form" action="/register" method="POST">
+			<input type="hidden" name="_csrf" value="{{csrf}}">
 		  <div class="form-group form-group-bottom">
 		    <label class="col-sm-3 control-label form-label" for="form-name">用户名：</label>
 		    <div class="col-sm-7">
-		      <input class="form-control form-input" type="text" id="for-name" placeholder="您的账号名和登录名">
+		      <input class="form-control form-input" type="text" id="for-name" name="username" placeholder="您的账号名和登录名">
 		    </div>
 		  </div>
 		  <div class="form-group form-group-bottom">
 		    <label class="col-sm-3 control-label form-label" for="form-passwd">密码：</label>
 		    <div class="col-sm-7">
-		      <input class="form-control form-input" type="text" id="for-passwd" placeholder="建议至少使用两种字符组合">
+		      <input class="form-control form-input" type="password" id="for-passwd" name="passwd" placeholder="建议至少使用两种字符组合">
 		    </div>
 		  </div>
 		  <div class="form-group form-group-bottom">
 		    <label class="col-sm-3 control-label form-label" for="form-passwd-check">确认密码：</label>
 		    <div class="col-sm-7">
-		      <input class="form-control form-input" type="text" id="for-passwd-check" placeholder="再次输入密码">
+		      <input class="form-control form-input" type="password" id="for-passwd-check" name="re-passwd" placeholder="再次输入密码">
 		    </div>
 		  </div>
 		  <div class="form-group form-group-bottom">
 		    <label class="col-sm-3 control-label form-label" for="form-phone">手机：</label>
 		    <div class="col-sm-7">
-		      <input class="form-control form-input" type="text" id="for-phone" placeholder="请输入手机">
+		      <input class="form-control form-input" type="text" id="for-phone" name="mobile" placeholder="请输入手机">
 		    </div>
 		  </div>
 		  <div class="form-group form-group-bottom">
 		    <label class="col-sm-3 control-label form-label" for="form-email">邮箱：</label>
 		    <div class="col-sm-7">
-		      <input class="form-control form-input" type="email" id="for-email" placeholder="请输入邮箱">
+		      <input class="form-control form-input" type="email" id="for-email" name="email" placeholder="请输入邮箱">
 		    </div>
 		  </div>
 		  <div class="form-group">
@@ -103,5 +104,26 @@
 {{#section 'jquery'}}
 <script type="text/javascript">
 	document.title = '个人注册'
+	$(document).ready(function() {
+		$('.registerForm').on('submit', function(e) {
+			e.preventDefault()
+			var action = $(this).attr('action')
+			$.ajax({
+				url: action,
+				type: 'POST',
+				data: $(this).serialize(),
+				success: function(data) {
+					if (data.success) {
+						console.log('success')
+					} else {
+						console.log('error')
+					}
+				},
+				error: function() {
+					console.log('error')
+				}
+			})
+		})
+	})
 </script>
 {{/section}}

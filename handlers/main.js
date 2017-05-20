@@ -13,5 +13,7 @@ exports.about = function(req, res) {
 }
 
 exports.register = function(req, res) {
-	res.render('register');
+	res.render('register', {
+		csrf: 'CSRF token here'
+	});
 }

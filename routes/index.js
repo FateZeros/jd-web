@@ -1,6 +1,9 @@
+// 表单处理 中间件body-parser
+var bodyParser = require('body-parser');
 var main = require('../handlers/main');
 
 module.exports = function(app) {
+	app.use(bodyParser());
 	/*** 页面路由 Start ***/
 	app.get('/', main.home);
 
@@ -8,6 +11,20 @@ module.exports = function(app) {
 
 	/** 注册 模块 **/
 	app.get('/register', main.register);
+	app.post('/register', function(req, res) {
+		console.log('Form (from querystring): ' + req.query.form);
+		console.log('CSRF token (from hidden form field): ' + req.body._csrf);
+		console.log('Name (from visible form field): ' + req.body.username);
+		console.log('PASSWD: ' + req.body.passwd);
+		if(req.xhr || req.accepts('json,html')==='json') {
+			res.send({ 
+				code: 200,
+				success: true 
+			})
+		} else {
+			res.redirect(303, '/thank-you');
+		}
+	})
 
 
 	app.get('/jq-test', function(req, res) {

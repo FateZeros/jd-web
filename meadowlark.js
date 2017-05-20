@@ -1,8 +1,6 @@
 var express = require('express');
 var exphbs = require('express-handlebars');
 var path = require('path');
-// 表单处理 中间件body-parser
-var bodyParser = require('body-parser');
 // Cookie
 var cookieParser = require('cookie-parser');
 var credentials = require('./credentials.js');
@@ -33,7 +31,6 @@ app.set('port', process.env.PORT || 1212);
 
 //加载静态资源
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(bodyParser());
 
 switch(app.get('env')) {
 	case 'development':
