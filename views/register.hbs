@@ -17,37 +17,42 @@
 		    <label class="col-sm-3 control-label form-label" for="form-name">用户名：</label>
 		    <div class="col-sm-7">
 		      <input class="form-control form-input" type="text" id="for-name" name="username" placeholder="您的账号名和登录名">
+		      <span id="helpBlock" class="help-block username-tip">支持中文、字母、数字、"_"、"-"的组合, 4-20个字符</span>
 		    </div>
 		  </div>
 		  <div class="form-group form-group-bottom">
-		    <label class="col-sm-3 control-label form-label" for="form-passwd">密码：</label>
+		    <label class="col-sm-3 control-label form-label" for="form-passwd">设置密码：</label>
 		    <div class="col-sm-7">
 		      <input class="form-control form-input" type="password" id="for-passwd" name="passwd" placeholder="建议至少使用两种字符组合">
+		    	<span id="helpBlock" class="help-block passwd-tip">建议使用字母、数字、符号两种以上的组合, 6-20个字符</span>
 		    </div>
 		  </div>
 		  <div class="form-group form-group-bottom">
 		    <label class="col-sm-3 control-label form-label" for="form-passwd-check">确认密码：</label>
 		    <div class="col-sm-7">
 		      <input class="form-control form-input" type="password" id="for-passwd-check" name="re-passwd" placeholder="再次输入密码">
+		    	<span id="helpBlock" class="help-block re-passwd-tip">请再次输入密码</span>
 		    </div>
 		  </div>
 		  <div class="form-group form-group-bottom">
 		    <label class="col-sm-3 control-label form-label" for="form-phone">手机：</label>
 		    <div class="col-sm-7">
 		      <input class="form-control form-input" type="text" id="for-phone" name="mobile" placeholder="请输入手机">
+		      <span id="helpBlock" class="help-block mobile-tip">请输入正确的手机号</span>
 		    </div>
 		  </div>
 		  <div class="form-group form-group-bottom">
 		    <label class="col-sm-3 control-label form-label" for="form-email">邮箱：</label>
 		    <div class="col-sm-7">
 		      <input class="form-control form-input" type="email" id="for-email" name="email" placeholder="请输入邮箱">
+		      <span id="helpBlock" class="help-block email-tip">请输入正确的邮箱</span>
 		    </div>
 		  </div>
 		  <div class="form-group">
 		    <div class="col-sm-offset-3 col-sm-7">
 		      <div class="checkbox">
 		        <label>
-		          <input type="checkbox" checked> 阅读并同意 <a href="#">《京东用户注册协议》</a> <a href="#">《隐私政策》</a>
+		          <input type="checkbox" name="checkInfo" checked> 阅读并同意 <a href="#">《京东用户注册协议》</a> <a href="#">《隐私政策》</a>
 		        </label>
 		      </div>
 		    </div>
@@ -108,6 +113,38 @@
 		$('.registerForm').on('submit', function(e) {
 			e.preventDefault()
 			var action = $(this).attr('action')
+			var username = $("input[name='username']").val()
+			var passwd = $("input[name='passwd']").val()
+			var rePasswd = $("input[name='re-passwd']").val()
+		  var mobile = $("input[name='mobile']").val()
+		  var email = $("input[name='email']").val()
+			var checkInfo = $("input[name='checkInfo']").is(':checked')
+			console.log(checkInfo)
+			if (!username) {
+				$('.username-tip').show()
+				return false
+			}
+			if (!passwd) {
+				$('.passwd-tip').show()
+				return false
+			}
+			if (!rePasswd) {
+				$('.re-passwd-tip').show()
+				return false
+			}
+			if (!mobile) {
+				$('.mobile-tip').show()
+				return false
+			}
+			if (!email) {
+				$('.email-tip').show()
+				return false
+			}
+
+			if (passwd && rePasswd && passwd !== rePasswd) {
+				$('.re-passwd-tip').html('两次输入的密码不一致,请再次输入').show()
+				return false
+			}
 			$.ajax({
 				url: action,
 				type: 'POST',

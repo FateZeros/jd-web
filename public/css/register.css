@@ -59,8 +59,12 @@
   height: 50px;
 }
 
+.username-tip, .passwd-tip, .re-passwd-tip, .mobile-tip, .email-tip {
+  display: none;
+}
+
 .form-group-bottom {
-  margin-bottom: 30px !important;
+  margin-bottom: 20px !important;
 }
 
 .form-company {
