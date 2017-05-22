@@ -1,9 +1,6 @@
-// 表单处理 中间件body-parser
-var bodyParser = require('body-parser');
 var main = require('../handlers/main');
 
 module.exports = function(app) {
-	app.use(bodyParser());
 	/*** 页面路由 Start ***/
 	app.get('/', main.home);
 
@@ -25,6 +22,9 @@ module.exports = function(app) {
 			res.redirect(303, '/thank-you');
 		}
 	})
+
+	/** 登录 模块 **/
+	app.get('/login', main.login);
 
 
 	app.get('/jq-test', function(req, res) {

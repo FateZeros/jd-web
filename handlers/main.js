@@ -17,3 +17,7 @@ exports.register = function(req, res) {
 		csrf: 'CSRF token here'
 	});
 }
+
+exports.login = function(req, res) {
+	res.render('login');
+}

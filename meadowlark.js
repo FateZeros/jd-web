@@ -1,6 +1,8 @@
 var express = require('express');
 var exphbs = require('express-handlebars');
 var path = require('path');
+// 表单处理 中间件body-parser
+var bodyParser = require('body-parser');
 // Cookie
 var cookieParser = require('cookie-parser');
 var credentials = require('./credentials.js');
@@ -25,6 +27,9 @@ var Weather = require('./lib/weather.js');
 
 var app = express();
 // 组织路由
+// 处理ajax请求
+app.use(bodyParser());
+
 
 //设置端口
 app.set('port', process.env.PORT || 1212);
