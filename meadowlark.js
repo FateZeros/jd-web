@@ -26,16 +26,14 @@ var Weather = require('./lib/weather.js');
 // console.log(weather.getWeatherData());
 
 var app = express();
-// 组织路由
-// 处理ajax请求
-app.use(bodyParser());
-
 
 //设置端口
 app.set('port', process.env.PORT || 1212);
 
 //加载静态资源
 app.use(express.static(path.join(__dirname, 'public')));
+// 处理ajax 表单请求
+app.use(bodyParser());
 
 switch(app.get('env')) {
 	case 'development':
@@ -104,6 +102,7 @@ app.use('/upload', function(req, res, next){
   })(req, res, next);
 });
 
+// 组织路由
 require('./routes')(app);
 // 自动化渲染视图
 // var autoViews = {}

@@ -30,7 +30,7 @@
 		  <div class="form-group form-group-bottom">
 		    <label class="col-sm-3 control-label form-label" for="form-passwd-check">确认密码：</label>
 		    <div class="col-sm-7">
-		      <input class="form-control form-input" type="password" id="for-passwd-check" name="re-passwd" placeholder="再次输入密码">
+		      <input class="form-control form-input" type="password" id="for-passwd-check" name="repasswd" placeholder="再次输入密码">
 		    	<span id="helpBlock" class="help-block re-passwd-tip">请再次输入密码</span>
 		    </div>
 		  </div>
@@ -115,11 +115,10 @@
 			var action = $(this).attr('action')
 			var username = $("input[name='username']").val()
 			var passwd = $("input[name='passwd']").val()
-			var rePasswd = $("input[name='re-passwd']").val()
+			var rePasswd = $("input[name='repasswd']").val()
 		  var mobile = $("input[name='mobile']").val()
 		  var email = $("input[name='email']").val()
 			var checkInfo = $("input[name='checkInfo']").is(':checked')
-			console.log(checkInfo)
 			if (!username) {
 				$('.username-tip').show()
 				return false
@@ -140,7 +139,6 @@
 				$('.email-tip').show()
 				return false
 			}
-
 			if (passwd && rePasswd && passwd !== rePasswd) {
 				$('.re-passwd-tip').html('两次输入的密码不一致,请再次输入').show()
 				return false
@@ -150,10 +148,10 @@
 				type: 'POST',
 				data: $(this).serialize(),
 				success: function(data) {
-					if (data.success) {
-						console.log('success')
+					if (data.code == 200) {
+						console.log(data.message)
 					} else {
-						console.log('error')
+						console.log(data.message)
 					}
 				},
 				error: function() {

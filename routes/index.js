@@ -1,4 +1,8 @@
 var main = require('../handlers/main');
+// 邮箱地址同时做后端验证
+var VALID_EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)+$/;
+// 手机号码验证
+var VALID_MOBILE_REGEX = /^1[3|5|7|8][0-9]{9}$/;
 
 module.exports = function(app) {
 	/*** 页面路由 Start ***/
@@ -9,14 +13,25 @@ module.exports = function(app) {
 	/** 注册 模块 **/
 	app.get('/register', main.register);
 	app.post('/register', function(req, res) {
-		console.log('Form (from querystring): ' + req.query.form);
-		console.log('CSRF token (from hidden form field): ' + req.body._csrf);
-		console.log('Name (from visible form field): ' + req.body.username);
-		console.log('PASSWD: ' + req.body.passwd);
+		// console.log(req.body)
+		// console.log('Form (from querystring): ' + req.query.form);
+		// console.log('CSRF token (from hidden form field): ' + req.body._csrf);
+		// console.log('Name (from visible form field): ' + req.body.username);
+		// console.log('PASSWD: ' + req.body.passwd);
+		// console.log('REPASSWD: ' + req.body.repasswd);
+		var mobile = req.body.mobile || ''
+		var email = req.body.email || ''
+		if (!mobile.match(VALID_MOBILE_REGEX)) {
+			if (req.xhr) return res.send({ code: 40001, message: '手机验证失败' })
+		}
+		if(!email.match(VALID_EMAIL_REGEX)) {
+			if (req.xhr) return res.send({ code: 40002, message: '邮箱验证失败' })
+		}
+
 		if(req.xhr || req.accepts('json,html')==='json') {
 			res.send({ 
 				code: 200,
-				success: true 
+				message: '注册成功' 
 			})
 		} else {
 			res.redirect(303, '/thank-you');
