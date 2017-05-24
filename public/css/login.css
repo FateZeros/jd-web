@@ -26,3 +26,33 @@
   padding-left: 30px;
   margin-top: 34px;
 }
+
+.login-cont {
+  padding: 20px;
+  width: 100%;
+  height: 475px;
+  position: relative;
+  background: #2d7cf1 url(../imgs/login-bg.jpg) no-repeat center;
+}
+
+.login-form {
+  width: 345px;
+  height: 400px;
+  background: #fff;
+  position: absolute;
+  top: 40px;
+  right: 130px;
+}
+
+
+.register-footer {
+  font-size: 12px;
+  color: #999;
+  text-align: center;
+  background-color: #fff;
+  padding: 50px 0;
+}
+
+.copy-right {
+  margin-top: 20px;
+}
