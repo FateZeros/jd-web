@@ -44,6 +44,11 @@
   right: 130px;
 }
 
+.tab-item {
+  flex: 1;
+  text-align: center;
+}
+
 
 .register-footer {
   font-size: 12px;
