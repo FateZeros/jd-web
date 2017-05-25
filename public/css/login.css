@@ -37,16 +37,73 @@
 
 .login-form {
   width: 345px;
-  height: 400px;
+  /*height: 380px;*/
   background: #fff;
   position: absolute;
   top: 40px;
   right: 130px;
 }
 
+.tab-content {
+  width: 345px;
+  /*height: 280px;*/
+  padding: 30px 20px;
+}
+
+.qrcode-cont {
+  text-align: center;
+}
+
+.qrcode-img {
+  width: 170px;
+  height: 166px;
+}
+
+.qrcode-tip {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.phone-tip {
+  color: #ee4d4e;
+}
+
 .tab-item {
   flex: 1;
   text-align: center;
+}
+
+.input-group-user {
+  height: 40px;
+} 
+
+.input-group-pwd {
+  height: 40px;
+  margin-top: 30px;
+}
+
+.input-user {
+  height: 40px;
+}
+
+.input-pwd {
+  height: 40px;
+}
+
+.input-group-forgetpwd, .input-group-login {
+  margin-top: 20px;
+  width: 100%;
+}
+
+.input-group-forgetpwd {
+  text-align: right;
+}
+
+.form-footer {
+  width: 345px;
+  height: 50px;
+  background: #fdfdfd;
+  border-top: 1px solid #e3e3e3;
 }
 
 
