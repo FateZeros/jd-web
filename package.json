@@ -33,6 +33,7 @@
     "express-session": "^1.15.2",
     "formidable": "^1.1.1",
     "jquery-file-upload-middleware": "^0.1.8",
+    "mongoose": "^4.10.2",
     "morgan": "^1.8.1",
     "nodemailer": "^4.0.1",
     "nodemailer-smtp-transport": "^2.7.4"

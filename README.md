@@ -1,5 +1,5 @@
 # meadowlark
-express + node + mocha
+express + node + mongoose + mocha
 
 ## 安装
 ```bash
@@ -64,6 +64,12 @@ npm install --save nodemailer
 
 npm install --save nodemailer-smtp-transport
 
+```
+
+## MongoDB
+```bash
+
+npm install --save mongoose
 ```
 
 ## 日志

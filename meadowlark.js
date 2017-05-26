@@ -13,6 +13,9 @@ var emailService = require('./lib/email.js')(credentials);
 
 // emailService.send('1031720197@qq.com', 'Hello Email', 'Hello');
 
+var mongoose = require('mongoose');
+var User = require('./models/user.js');
+
 // 日志
 var morgan = require('morgan');
 var expLogger = require('express-logger');
@@ -89,6 +92,23 @@ app.use(function(req, res, next) {
 	next();
 });
 
+var options = {
+	server: {
+		socketOptions: { keepAlive: 1 }
+	}
+};
+
+switch(app.get('env')){
+  case 'development':
+    mongoose.connect(credentials.mongo.development.connectionString, options);
+    break;
+  case 'production':
+    mongoose.connect(credentials.mongo.production.connectionString, options);
+    break;
+  default:
+    throw new Error('Unknown execution environment: ' + app.get('env'));
+}
+
 // jQuery File Upload endpoint middleware
 app.use('/upload', function(req, res, next){
   var now = Date.now();
@@ -101,6 +121,7 @@ app.use('/upload', function(req, res, next){
     }
   })(req, res, next);
 });
+
 
 // 组织路由
 require('./routes')(app);

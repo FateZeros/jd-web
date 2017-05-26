@@ -4,6 +4,8 @@ var VALID_EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z
 // 手机号码验证
 var VALID_MOBILE_REGEX = /^1[3|5|7|8][0-9]{9}$/;
 
+var User = require('../models/user.js');
+
 module.exports = function(app) {
 	/*** 页面路由 Start ***/
 	app.get('/', main.home);
@@ -28,14 +30,29 @@ module.exports = function(app) {
 			if (req.xhr) return res.send({ code: 40002, message: '邮箱验证失败' })
 		}
 
-		if(req.xhr || req.accepts('json,html')==='json') {
-			res.send({ 
-				code: 200,
-				message: '注册成功' 
-			})
-		} else {
-			res.redirect(303, '/thank-you');
-		}
+		User.update(
+		{ $push: { name: req.body.username } },
+		{ passwd: req.body.repasswd },
+		{ mobile: mobile },
+		{ email: email },
+		{ upsert: true },
+		function(err) {
+			if (err) {
+				console.log(err);
+				return res.redirect(303, '/thank-you');
+			} 
+			return res.send({ 
+					code: 200,
+					message: '注册成功' 
+				})
+			}
+		);
+
+		// if(req.xhr || req.accepts('json,html')==='json') {
+			
+		// } else {
+			
+		// }
 	})
 
 	/** 登录 模块 **/
