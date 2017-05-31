@@ -117,3 +117,4 @@ linkchecker http://localhost:1212
 [Nodemailer](https://npmjs.org/package/nodemailer)</br>
 [Node异常处理：域](http://nodejs.org/api/domain.html)
 [天气接口](https://github.com/seniverse)
+[Mongoose文档](http://mongoosejs.com/docs/guide.html)

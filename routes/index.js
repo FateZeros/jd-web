@@ -1,8 +1,11 @@
 var main = require('../handlers/main');
+var credentials = require('../credentials.js');
 // 邮箱地址同时做后端验证
 var VALID_EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)+$/;
 // 手机号码验证
 var VALID_MOBILE_REGEX = /^1[3|5|7|8][0-9]{9}$/;
+// Email
+var emailService = require('../lib/email.js')(credentials);
 
 var User = require('../models/user.js');
 
@@ -30,29 +33,27 @@ module.exports = function(app) {
 			if (req.xhr) return res.send({ code: 40002, message: '邮箱验证失败' })
 		}
 
+		// 写入参数过多时
+		var query = {
+			passwd: req.body.repasswd,
+			mobile: mobile,
+			email: email
+		}
+
 		User.update(
-		{ $push: { name: req.body.username } },
-		{ passwd: req.body.repasswd },
-		{ mobile: mobile },
-		{ email: email },
-		{ upsert: true },
-		function(err) {
-			if (err) {
-				console.log(err);
-				return res.redirect(303, '/thank-you');
-			} 
-			return res.send({ 
-					code: 200,
-					message: '注册成功' 
-				})
+			{ name: req.body.username },
+			query,
+			{ upsert: true },
+			function(err) {
+				console.log(err)
+				if (err) {
+					return res.redirect(303, '/thank-you');
+				}
+				//发送邮件
+				emailService.send('1031720197@qq.com', 'Hello LDM', 'Hello');
+				return res.send({ code: 200, message: '注册成功' });
 			}
 		);
-
-		// if(req.xhr || req.accepts('json,html')==='json') {
-			
-		// } else {
-			
-		// }
 	})
 
 	/** 登录 模块 **/
