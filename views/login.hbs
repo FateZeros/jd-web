@@ -12,41 +12,41 @@
 <div class="login-cont">
 	<div class="login-form">
 		<ul class="nav nav-tabs">
-			<li class="active tab-item">
+			<li class="tab-item">
 				<a href="#login-qrcode" data-toggle="tab">扫码登录</a>
 			</li>
-			<li class="tab-item">
+			<li class="active tab-item">
 				<a href="#login-user" data-toggle="tab">账户登录</a>
 			</li>
 		</ul>
 		<div class="tab-content">
-			<div class="tab-pane active" id="login-qrcode">
+			<div class="tab-pane" id="login-qrcode">
 				<div class="qrcode-cont">
 					<img src="imgs/qrcode-1.png" alt="" class="qrcode-img">
 					<div class="qrcode-tip">打开<span class="phone-tip">手机京东</span> 扫描二维码</div>
 				</div>
 			</div>
-			<div class="tab-pane" id="login-user">
-				<div class="form-group">
+			<div class="tab-pane active" id="login-user">
+				<Form class="form-group" action="/login" method="POST">
 			    <div class="input-group input-group-user">
 			      <div class="input-group-addon">
 			      	<span class="glyphicon glyphicon-user"></span>
 			      </div>
-			      <input type="text" class="form-control input-user" id="loginUser" placeholder="邮箱／用户名／手机号">
+			      <input type="text" class="form-control input-user" id="loginUser" name="username" placeholder="邮箱／用户名／手机号">
 			    </div>
 			    <div class="input-group input-group-pwd">
 			      <div class="input-group-addon">
 			      	<span class="glyphicon glyphicon-lock"></span>
 			      </div>
-			      <input type="password" class="form-control input-pwd" id="loginPasswd" placeholder="密码">
+			      <input type="password" class="form-control input-pwd" id="loginPasswd" name="passwd" placeholder="密码">
 			    </div>
 			    <div class="input-group input-group-forgetpwd">
 			    	<a href="#">忘记密码</a>
 			    </div>
-			    <div class="input-group input-group-login">
+			    <div class="input-group input-group-login js-login-btn">
 				    <button type="submit" class="btn btn-lg btn-danger btn-block">登录</button>
 			    </div>
-			  </div>
+			  </Form>
 			</div>
 		</div>
 		<div class="form-footer">
@@ -81,3 +81,32 @@
     Copyright©2017-2017  京东JD.com 版权所有
 	</div>
 </div>
+
+{{#section 'jquery'}}
+<script type="text/javascript">
+	$(function() {
+		$('.js-login-btn').on('submit', function(e) {
+			e.preventDefault()
+			var action = $(this).attr('action')
+			// var username = $('.user-name').val()
+			// var passwd = $('.user-passwd').val()
+			var username = $("input[name='username']").val()
+			var passwd = $("input[name='passwd']").val()
+			console.log(username)
+			$.ajax({
+				url: action,
+				type: 'POST',
+				data: {
+					username: username,
+					passwd: passwd
+				},
+				success: function(data) {
+					if (data.code == 200) {
+						console.log(data)
+					}
+				}
+			})
+		})
+	})
+</script>
+{{/section}}

@@ -50,14 +50,33 @@ module.exports = function(app) {
 					return res.redirect(303, '/thank-you');
 				}
 				//发送邮件
-				emailService.send('1031720197@qq.com', 'Hello LDM', 'Hello');
+				emailService.send('1031720197@qq.com', '恭喜您，在网站成功注册！', 'Hello');
 				return res.send({ code: 200, message: '注册成功' });
 			}
 		);
-	})
+	});
 
 	/** 登录 模块 **/
 	app.get('/login', main.login);
+	app.post('/login', function(req, res) {
+		console.log('Name: ' + req.body.username);
+		console.log('PASSWD: ' + req.body.passwd);
+		var username = req.body.username || ''
+		var passwd = req.body.passwd
+
+		User.findOne({ name: username }, 'passwd', function(err, data) {
+			if (!data) {
+				res.send('用户不存在');
+				return 
+			}
+			if (data.passwd === passwd) {
+				req.session.user = { username: username }
+				return res.send({ code: 200, message: '登录成功' });
+			}
+			res.send('用户名或密码不正确');
+		})
+		
+	})
 
 
 	app.get('/jq-test', function(req, res) {
