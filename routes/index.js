@@ -65,17 +65,21 @@ module.exports = function(app) {
 		var passwd = req.body.passwd
 
 		User.findOne({ name: username }, 'passwd', function(err, data) {
-			if (!data) {
-				res.send('用户不存在');
-				return 
+			if (err) {
+				res.send({ code: 500, message: '服务器故障' })
+			} else if(!data) {
+				res.send({ code: 40010, message: '用户不存在' });
+			} else {
+				if (data.passwd !== passwd) {
+					req.session.error = '密码错误';
+					res.send({ code: 40011, message: '密码错误' });
+				} else {
+					req.session.user = { username: username }
+					// res.send({ code: 200, message: '登录成功' });
+					res.redirect('/')
+				}
 			}
-			if (data.passwd === passwd) {
-				req.session.user = { username: username }
-				return res.send({ code: 200, message: '登录成功' });
-			}
-			res.send('用户名或密码不正确');
 		})
-		
 	})
 
 
