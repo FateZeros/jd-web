@@ -17,8 +17,12 @@
 		<div class="fr nav-cont">
 			<ul>
 				<li class="nav-item">
+					{{#if isLogin}}
 					<a class="login">你好，请登录</a>&nbsp;
 					<a class="regist" href="/register">免费注册</a>
+					{{else}}
+					<a href="/person/myInfo">您好，FateYJF</a>
+					{{/if}}
 				</li>
 				<li class="nav-item">
 					我的订单

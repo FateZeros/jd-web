@@ -82,7 +82,6 @@ module.exports = function(app) {
 		})
 	})
 
-
 	app.get('/jq-test', function(req, res) {
 		res.render('jq-test');
 	});

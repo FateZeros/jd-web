@@ -124,7 +124,8 @@ app.use('/upload', function(req, res, next){
 
 
 // 组织路由
-require('./routes')(app);
+require('./routes/main')(app);
+require('./routes/person')(app);
 // 自动化渲染视图
 // var autoViews = {}
 // app.use(function(req, res, next){

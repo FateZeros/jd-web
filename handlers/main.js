@@ -1,8 +1,11 @@
+/* 主页路由 处理 */
 var fortune = require('../lib/fortune.js');
 
 // 按逻辑对处理器进行分组。
 exports.home = function(req, res) {
-	res.render('home');
+	res.render('home', {
+		isLogin: false
+	});
 };
 
 exports.about = function(req, res) {
